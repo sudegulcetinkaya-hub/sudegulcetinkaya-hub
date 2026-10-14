@@ -1,11 +1,29 @@
-# Sude'nin GitHub profil afişini üretir (açık + koyu). Tohumlu rastgelelik: her koşu aynı çıktı.
+# Sude'nin GitHub profil afişini üretir (açık + koyu). Tohum aydan gelir: aynı ayda her koşu aynı
+# çıktıyı verir, her ay yeni bir baskı çıkar (köşede "EKİM 2026 BASKISI" gibi bir etiket).
+# Ayı elle seçmek için: AFIS_AY=2026-11 python tools/uret-afis.py
 # Çizgiler: diş minesi / eşyükselti katmanları gibi akan eğriler; yatayda periyodik, böylece
 # sola kayan animasyon dikişsiz döner. Hareket azaltma tercihinde animasyon durur.
-import math, random, pathlib
+import datetime, math, os, random, pathlib
 
 KOK = pathlib.Path(__file__).resolve().parent.parent
 W, H = 1280, 400
-TOHUM = 1410
+AYLAR = ["OCAK", "ŞUBAT", "MART", "NİSAN", "MAYIS", "HAZİRAN",
+         "TEMMUZ", "AĞUSTOS", "EYLÜL", "EKİM", "KASIM", "ARALIK"]
+
+def baski_ayi():
+    """(yıl, ay): AFIS_AY varsa ondan, yoksa Türkiye saatiyle (UTC+3) bugünden."""
+    elle = os.environ.get("AFIS_AY", "").strip()
+    if elle:
+        yil, ay = (int(p) for p in elle.split("-"))
+        if not 1 <= ay <= 12:
+            raise SystemExit(f"AFIS_AY geçersiz: {elle} (örnek 2026-11)")
+        return yil, ay
+    simdi = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=3)))
+    return simdi.year, simdi.month
+
+YIL, AY = baski_ayi()
+TOHUM = YIL * 100 + AY
+ETIKET = f"{AYLAR[AY - 1]} {YIL} BASKISI"
 
 TEMA = {
     "dark": dict(zemin="#0b0f14", zemin2="#111823", yazi="#eef1f4", soluk="#8a97a6", ince="#2a3442",
@@ -79,7 +97,8 @@ def afis(ad):
   <rect width="{W}" height="{H}" fill="url(#perde)"/>
   <g font-family="{mono}" font-size="12" fill="{t["soluk"]}" letter-spacing="2.4">
     <text x="64" y="74">N° 01 · OPONE</text>
-    <text x="{W - 64}" y="{H - 38}" text-anchor="end">dent · hotel · social · agent · 2026</text>
+    <text x="{W - 64}" y="74" text-anchor="end" font-size="11">{ETIKET}</text>
+    <text x="{W - 64}" y="{H - 38}" text-anchor="end">dent · hotel · social · agent · {YIL}</text>
   </g>
   <line x1="64" y1="92" x2="148" y2="92" stroke="{t["renkler"][0]}" stroke-width="2"/>
   <text x="60" y="196" font-family="{serif}" font-size="76" fill="{t["yazi"]}" letter-spacing="-1.5">Sude Gül</text>
@@ -96,4 +115,4 @@ def afis(ad):
 for ad in TEMA:
     (KOK / "assets").mkdir(exist_ok=True)
     (KOK / "assets" / f"afis-{ad}.svg").write_text(afis(ad), encoding="utf-8")
-    print("yazildi:", f"assets/afis-{ad}.svg")
+    print("yazildi:", f"assets/afis-{ad}.svg", "·", ETIKET, "· tohum", TOHUM)

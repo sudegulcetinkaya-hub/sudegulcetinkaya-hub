@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240" width="360" height="240" role="img" aria-label="1. Müşteri bekliyor">
+<title>1. Müşteri bekliyor</title>
+<style>
+  .nabiz { animation: nabiz 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes nabiz { 50% { opacity: .35 } }
+  @media (prefers-reduced-motion: reduce) { .nabiz { animation: none } }
+</style>
+<rect x=".5" y=".5" width="359" height="239" rx="16" fill="#111823" stroke="#2a3442"/>
+<text x="22" y="34" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace" font-size="12" letter-spacing="2" fill="#8a97a6">01</text>
+<text x="52" y="34" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#eef1f4">Müşteri bekliyor</text>
+<circle cx="70" cy="118" r="11" fill="#c9d2dc"/><path d="M51 164 Q51 134 70 134 Q89 134 89 164 Z" fill="#c9d2dc"/><g transform="translate(70 82)"><circle r="17" fill="#18212e" stroke="#ff7a8c" stroke-width="2.5"/><path d="M0 -9 V0 L7 5" fill="none" stroke="#ff7a8c" stroke-width="2.5" stroke-linecap="round"/></g><path d="M110 160 C160 120 220 200 270 150" fill="none" stroke="#8a97a6" stroke-width="2" stroke-dasharray="5 7"/><path d="M270 150 C220 210 160 120 110 172" fill="none" stroke="#8a97a6" stroke-width="2" stroke-dasharray="5 7" opacity=".55"/><g transform="translate(272 98)"><rect x="0" y="0" width="64" height="58" rx="6" fill="#18212e" stroke="#2a3442"/><path d="M0 20 H64 M0 39 H64" stroke="#2a3442"/><rect x="8" y="6" width="14" height="10" rx="2" fill="#8a97a6" opacity=".5"/><rect x="28" y="25" width="20" height="10" rx="2" fill="#8a97a6" opacity=".5"/><text x="32" y="78" text-anchor="middle" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace" font-size="11" fill="#8a97a6">depo</text></g><text x="182" y="128" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="28" font-weight="700" fill="#ff7a8c" class="nabiz">?</text><text x="22" y="216" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8a97a6">Ürün var mı, nerede, ne kadar sürer?</text>
+</svg>

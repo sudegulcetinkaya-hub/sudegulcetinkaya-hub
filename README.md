@@ -12,6 +12,8 @@ Merhaba, ben Sude.
 
 <sub>Co-founder at OpOne — DentAI, HotelAI, SocialAI and AgentAI. Building one platform for the entire operation of clinics, hotels and brands.</sub>
 
+<a href="https://sudegulcetinkaya-hub.github.io"><b>Canlı vitrin</b></a> — maskotlar imleci izler, dokununca sevinir.
+
 <br>
 
 <table>
@@ -52,6 +54,38 @@ Görevi alan, bitiren ve kanıtını sunan çalışma arkadaşları. Planlar, uy
 ### Kendi projem
 
 **İstek Noktası** · <sub>mağaza deneyimi</sub> — Mağazada müşteri ürününü beklerken stoğu, konumu ve isteğinin durumunu tek akışta gösteren bir prototip. Danışmana daha çok zaman, depoya tek kayıt.
+
+<table>
+<tr>
+<td align="center" width="33%" valign="top">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/vaka/kare-1-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/vaka/kare-1-light.svg">
+  <img src="assets/vaka/kare-1-light.svg" width="100%" alt="1. Müşteri bekliyor: ürün var mı, nerede, ne kadar sürer belli değil">
+</picture><br>
+<sub><b>1 · Müşteri bekliyor</b></sub>
+</td>
+<td align="center" width="33%" valign="top">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/vaka/kare-2-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/vaka/kare-2-light.svg">
+  <img src="assets/vaka/kare-2-light.svg" width="100%" alt="2. Stok ve konum tek ekranda: beden, mağaza ve depo adedi, raf yeri">
+</picture><br>
+<sub><b>2 · Stok ve konum tek ekranda</b></sub>
+</td>
+<td align="center" width="33%" valign="top">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/vaka/kare-3-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/vaka/kare-3-light.svg">
+  <img src="assets/vaka/kare-3-light.svg" width="100%" alt="3. İsteğin durumu görünür: alındı, hazırlanıyor, yolda, teslim">
+</picture><br>
+<sub><b>3 · İsteğin durumu görünür</b></sub>
+</td>
+</tr>
+</table>
+
+<sub><b>Ne öğrendim:</b> Bekleyen müşteriyi en çok rahatlatan şey hız değil, isteğinin nerede olduğunu görebilmesi.</sub>
+
 <a href="https://sudegulcetinkaya-hub.github.io/istek-noktasi-acik/">Canlı prototip</a> · <a href="https://github.com/sudegulcetinkaya-hub/istek-noktasi-acik">Kod</a>
 
 ### Şu sıralar

@@ -1,0 +1,35 @@
+# Her ayın 1'inde profil afişini yeni ayın tohumuyla yeniden üretir; değiştiyse commit atar.
+name: Afiş yenile
+
+on:
+  schedule:
+    - cron: "0 3 1 * *"   # ayın 1'i, 03:00 UTC (Türkiye 06:00)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  afis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Afişi üret
+        run: python tools/uret-afis.py
+
+      - name: Değiştiyse commit at
+        run: |
+          if git diff --quiet -- assets/afis-dark.svg assets/afis-light.svg; then
+            echo "Afiş değişmedi."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/afis-dark.svg assets/afis-light.svg
+          git commit -m "Afiş: $(TZ=Europe/Istanbul date +%Y-%m) baskısı"
+          git push

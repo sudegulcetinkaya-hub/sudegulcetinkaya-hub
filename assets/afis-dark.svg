@@ -25,8 +25,8 @@
     <text x="1216" y="362" text-anchor="end">dent · hotel · social · agent · 2026</text>
   </g>
   <line x1="64" y1="92" x2="148" y2="92" stroke="#3fd0a2" stroke-width="2"/>
-  <text x="60" y="196" font-family="Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif" font-size="76" fill="#eef1f4" letter-spacing="-1.5">Sude Gül</text>
-  <text x="64" y="246" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, 'Liberation Mono', monospace" font-size="22" fill="#eef1f4" letter-spacing="9">ÇETİNKAYA</text>
+  <text x="60" y="194" font-family="Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif" font-size="63" fill="#eef1f4" textLength="243" lengthAdjust="spacing">Sude Gül</text>
+  <text x="64" y="242" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, 'Liberation Mono', monospace" font-size="26" fill="#eef1f4" textLength="239" lengthAdjust="spacing">ÇETİNKAYA</text>
   <text x="64" y="304" font-family="Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif" font-size="21" font-style="italic" fill="#8a97a6">İşletmelerin tüm operasyonunu tek çatı altında topluyoruz.</text>
   <g font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, 'Liberation Mono', monospace" font-size="13" fill="#8a97a6">
     <text x="64" y="346"><tspan fill="#3fd0a2">›</tspan> kurucu ortak — OpOne · DentAI · HotelAI · SocialAI · AgentAI<tspan class="imlec" fill="#3fd0a2"> ▍</tspan></text>

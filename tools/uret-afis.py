@@ -7,6 +7,9 @@ import datetime, math, os, random, pathlib
 
 KOK = pathlib.Path(__file__).resolve().parent.parent
 W, H = 1280, 400
+# "Sude Gül" ve "ÇETİNKAYA" aynı sağ kenarda biter: iki satır da bu genişliğe sabitlenir
+# (textLength), böylece görüntüleyicinin yazı tipi farklı olsa da hiza bozulmaz.
+AD_GENISLIK = 243
 AYLAR = ["OCAK", "ŞUBAT", "MART", "NİSAN", "MAYIS", "HAZİRAN",
          "TEMMUZ", "AĞUSTOS", "EYLÜL", "EKİM", "KASIM", "ARALIK"]
 
@@ -101,8 +104,8 @@ def afis(ad):
     <text x="{W - 64}" y="{H - 38}" text-anchor="end">dent · hotel · social · agent · {YIL}</text>
   </g>
   <line x1="64" y1="92" x2="148" y2="92" stroke="{t["renkler"][0]}" stroke-width="2"/>
-  <text x="60" y="196" font-family="{serif}" font-size="76" fill="{t["yazi"]}" letter-spacing="-1.5">Sude Gül</text>
-  <text x="64" y="246" font-family="{mono}" font-size="22" fill="{t["yazi"]}" letter-spacing="9">ÇETİNKAYA</text>
+  <text x="60" y="194" font-family="{serif}" font-size="63" fill="{t["yazi"]}" textLength="{AD_GENISLIK}" lengthAdjust="spacing">Sude Gül</text>
+  <text x="64" y="242" font-family="{mono}" font-size="26" fill="{t["yazi"]}" textLength="{AD_GENISLIK - 4}" lengthAdjust="spacing">ÇETİNKAYA</text>
   <text x="64" y="304" font-family="{serif}" font-size="21" font-style="italic" fill="{t["soluk"]}">İşletmelerin tüm operasyonunu tek çatı altında topluyoruz.</text>
   <g font-family="{mono}" font-size="13" fill="{t["soluk"]}">
     <text x="64" y="346"><tspan fill="{t["renkler"][0]}">›</tspan> kurucu ortak — OpOne · DentAI · HotelAI · SocialAI · AgentAI<tspan class="imlec" fill="{t["renkler"][0]}"> ▍</tspan></text>

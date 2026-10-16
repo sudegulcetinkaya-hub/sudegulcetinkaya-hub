@@ -1,5 +1,5 @@
 # Her ayın 1'inde profil afişini yeni ayın tohumuyla yeniden üretir; değiştiyse commit atar.
-name: Afiş yenile
+name: Refresh banner
 
 on:
   schedule:
@@ -19,10 +19,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Afişi üret
+      - name: Build the banner
         run: python tools/uret-afis.py
 
-      - name: Değiştiyse commit at
+      - name: Commit if changed
         run: |
           if git diff --quiet -- assets/afis-dark.svg assets/afis-light.svg; then
             echo "Afiş değişmedi."
@@ -31,5 +31,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets/afis-dark.svg assets/afis-light.svg
-          git commit -m "Afiş: $(TZ=Europe/Istanbul date +%Y-%m) baskısı"
+          git commit -m "Banner: $(TZ=Europe/Istanbul date +%Y-%m) edition"
           git push

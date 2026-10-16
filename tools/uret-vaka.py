@@ -14,6 +14,23 @@ TEMA = {
 SERIF = "Didot, 'Bodoni 72', 'Bodoni MT', 'Playfair Display', Georgia, 'Times New Roman', serif"
 SANS = "'Helvetica Neue', Helvetica, Arial, sans-serif"
 
+# İki dil: "en" assets/vaka (ana README), "tr" assets/tr/vaka (README.tr.md).
+METINLER = {
+    "en": dict(klasor="assets/vaka", depo="STOCKROOM", beden="REQUESTED SIZE", b1="The wait",
+               a1="IS MY SIZE IN, WHERE IS IT, WHAT HAPPENED?", urun="ITEM · REQUEST W-47", ad="Satin midi dress",
+               satir=(("STORE", "1"), ("STOCKROOM", "6"), ("LOCATION", "SHELF B-3")), b2="One record",
+               a2="STOCK, SIZE AND SHELF ON ONE SCREEN", kod="REQUEST CODE",
+               adim=("RECEIVED", "SEARCHING STOCKROOM", "ON THE NEXT RUN", "AT THE REQUEST POINT"),
+               vaat="NO TIME PROMISES · ONLY THE REAL STATUS", b3="Visible status", a3="THE CUSTOMER FOLLOWS THEIR OWN REQUEST"),
+    "tr": dict(klasor="assets/tr/vaka", depo="DEPO", beden="İSTENEN BEDEN", b1="Bekleyiş",
+               a1="BEDEN VAR MI, NEREDE, İSTEĞİM NE OLDU?", urun="ÜRÜN · W-47 İSTEĞİ", ad="Saten midi elbise",
+               satir=(("MAĞAZA", "1"), ("DEPO", "6"), ("KONUM", "RAF B-3")), b2="Tek kayıt",
+               a2="STOK, BEDEN VE RAF YERİ AYNI EKRANDA", kod="İSTEK KODU",
+               adim=("ALINDI", "DEPODA ARANIYOR", "SIRADAKİ TURDA", "İSTEK NOKTASINDA"),
+               vaat="SÜRE VAADİ YOK · YALNIZCA GERÇEK DURUM", b3="Görünür durum", a3="MÜŞTERİ İSTEĞİNİ KENDİSİ İZLER"),
+}
+M = METINLER["en"]
+
 def etiket(t, x, y, metin, renk=None, anchor="start", boyut=8.5):
     return (f'<text x="{x}" y="{y}" text-anchor="{anchor}" font-family="{SANS}" font-size="{boyut}" '
             f'letter-spacing="2.2" fill="{renk or t["soluk"]}">{metin}</text>')
@@ -50,32 +67,32 @@ def kare1(t):
     ic += f'<path d="M118 132 H262" stroke="{t["soluk"]}" stroke-width=".9" stroke-dasharray="2 5"/>'
     ic += (f'<g transform="translate(284 104)" fill="none" stroke="{t["yazi"]}" stroke-width=".9">'
            f'<rect x="0" y="0" width="48" height="56"/><path d="M0 18.7 H48 M0 37.3 H48"/></g>')
-    ic += etiket(t, 308, 176, "STOCKROOM", anchor="middle")
+    ic += etiket(t, 308, 176, M["depo"], anchor="middle")
     ic += f'<text x="190" y="122" text-anchor="middle" font-family="{SERIF}" font-size="44" fill="{t["yazi"]}" class="nabiz">?</text>'
-    ic += etiket(t, 76, 180, "REQUESTED SIZE", anchor="middle")
-    return cerceve(t, 1, "The wait", ic, "IS MY SIZE IN, WHERE IS IT, WHAT HAPPENED?")
+    ic += etiket(t, 76, 180, M["beden"], anchor="middle")
+    return cerceve(t, 1, M["b1"], ic, M["a1"])
 
 def kare2(t):
     ic = askili(t, 72, 118, 0.95)
-    ic += etiket(t, 128, 70, "ITEM · REQUEST W-47", t["soluk"])
-    ic += f'<text x="128" y="92" font-family="{SERIF}" font-size="17" fill="{t["yazi"]}">Satin midi dress</text>'
+    ic += etiket(t, 128, 70, M["urun"], t["soluk"])
+    ic += f'<text x="128" y="92" font-family="{SERIF}" font-size="17" fill="{t["yazi"]}">{M["ad"]}</text>'
     for i, b in enumerate(("XS", "S", "M", "L", "XL")):
         x, sec = 128 + i * 38, b == "M"
         ic += (f'<rect x="{x}" y="104" width="32" height="22" fill="{t["yazi"] if sec else "none"}" stroke="{t["yazi"] if sec else t["cizgi"]}" stroke-width=".9"/>'
                f'<text x="{x + 16}" y="119" text-anchor="middle" font-family="{SANS}" font-size="9.5" letter-spacing="1" '
                f'fill="{t["ters"] if sec else t["soluk"]}">{b}</text>')
-    for i, (ad, deger) in enumerate((("STORE", "1"), ("STOCKROOM", "6"), ("LOCATION", "SHELF B-3"))):
+    for i, (ad, deger) in enumerate(M["satir"]):
         y = 152 + i * 18
         ic += etiket(t, 128, y, ad)
         ic += (f'<text x="{W - 22}" y="{y}" text-anchor="end" font-family="{SANS}" font-size="10" letter-spacing="1.5" '
                f'fill="{t["yazi"]}">{deger}</text>')
         ic += f'<path d="M128 {y + 6} H{W - 22}" stroke="{t["cizgi"]}" stroke-width=".6"/>'
-    return cerceve(t, 2, "One record", ic, "STOCK, SIZE AND SHELF ON ONE SCREEN")
+    return cerceve(t, 2, M["b2"], ic, M["a2"])
 
 def kare3(t):
-    ic = etiket(t, 22, 70, "REQUEST CODE")
+    ic = etiket(t, 22, 70, M["kod"])
     ic += f'<text x="22" y="112" font-family="{SERIF}" font-size="46" fill="{t["yazi"]}">W-47</text>'
-    adimlar = ("RECEIVED", "SEARCHING STOCKROOM", "ON THE NEXT RUN", "AT THE REQUEST POINT")
+    adimlar = M["adim"]
     aktif = 2
     for i, ad in enumerate(adimlar):
         y = 66 + i * 24
@@ -89,12 +106,13 @@ def kare3(t):
             ic += f'<rect x="{x}" y="{y - 7}" width="7" height="7" fill="none" stroke="{t["soluk"]}" stroke-width=".8"/>'
         renk = t["yazi"] if i <= aktif else t["soluk"]
         ic += etiket(t, x + 18, y, ad, renk)
-    ic += etiket(t, 22, 186, "NO TIME PROMISES · ONLY THE REAL STATUS")
-    return cerceve(t, 3, "Visible status", ic, "THE CUSTOMER FOLLOWS THEIR OWN REQUEST")
+    ic += etiket(t, 22, 186, M["vaat"])
+    return cerceve(t, 3, M["b3"], ic, M["a3"])
 
-(KOK / "assets" / "vaka").mkdir(parents=True, exist_ok=True)
-for ad, t in TEMA.items():
+for dil, M in METINLER.items():
+  (KOK / M["klasor"]).mkdir(parents=True, exist_ok=True)
+  for ad, t in TEMA.items():
     for no, f in enumerate((kare1, kare2, kare3), 1):
-        yol = KOK / "assets" / "vaka" / f"kare-{no}-{ad}.svg"
+        yol = KOK / M["klasor"] / f"kare-{no}-{ad}.svg"
         yol.write_text(f(t), encoding="utf-8")
         print("yazildi:", yol.relative_to(KOK).as_posix())

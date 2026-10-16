@@ -24,12 +24,12 @@ jobs:
 
       - name: Commit if changed
         run: |
-          if git diff --quiet -- assets/afis-dark.svg assets/afis-light.svg; then
-            echo "Afiş değişmedi."
+          if git diff --quiet -- assets/afis-dark.svg assets/afis-light.svg assets/tr/afis-dark.svg assets/tr/afis-light.svg; then
+            echo "Banner unchanged."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/afis-dark.svg assets/afis-light.svg
+          git add assets/afis-dark.svg assets/afis-light.svg assets/tr/afis-dark.svg assets/tr/afis-light.svg
           git commit -m "Banner: $(TZ=Europe/Istanbul date +%Y-%m) edition"
           git push

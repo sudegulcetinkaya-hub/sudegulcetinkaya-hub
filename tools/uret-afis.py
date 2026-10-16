@@ -10,8 +10,18 @@ W, H = 1280, 400
 # "Sude Gül" ve "ÇETİNKAYA" aynı sağ kenarda biter: iki satır da bu genişliğe sabitlenir
 # (textLength), böylece görüntüleyicinin yazı tipi farklı olsa da hiza bozulmaz.
 AD_GENISLIK = 243
-AYLAR = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
-         "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"]
+# İki dil: "en" assets/afis-*.svg (ana README), "tr" assets/tr/afis-*.svg (README.tr.md).
+METINLER = {
+    "en": dict(aylar=["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+                      "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"],
+               baski="EDITION", slogan="We bring a business’s entire operation under one roof.",
+               rol="co-founder", klasor="assets"),
+    "tr": dict(aylar=["OCAK", "ŞUBAT", "MART", "NİSAN", "MAYIS", "HAZİRAN",
+                      "TEMMUZ", "AĞUSTOS", "EYLÜL", "EKİM", "KASIM", "ARALIK"],
+               baski="BASKISI", slogan="İşletmelerin tüm operasyonunu tek çatı altında topluyoruz.",
+               rol="kurucu ortak", klasor="assets/tr"),
+}
+M = METINLER["en"]
 
 def baski_ayi():
     """(yıl, ay): AFIS_AY varsa ondan, yoksa Türkiye saatiyle (UTC+3) bugünden."""
@@ -26,7 +36,6 @@ def baski_ayi():
 
 YIL, AY = baski_ayi()
 TOHUM = YIL * 100 + AY
-ETIKET = f"{AYLAR[AY - 1]} {YIL} EDITION"
 
 TEMA = {
     "dark": dict(zemin="#0b0f14", zemin2="#111823", yazi="#eef1f4", soluk="#8a97a6", ince="#2a3442",
@@ -77,7 +86,7 @@ def afis(ad):
         noktalar.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r.choice([1.2, 1.6, 2.2])}" fill="{r.choice(t["renkler"])}" class="pirilti" style="animation-delay:{r.uniform(0, 6):.1f}s"/>')
     serif = "Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif"
     mono = "ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, 'Liberation Mono', monospace"
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Sude Gül Çetinkaya — co-founder, OpOne · DentAI · HotelAI · SocialAI · AgentAI">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Sude Gül Çetinkaya — {M["rol"]}, OpOne · DentAI · HotelAI · SocialAI · AgentAI">
 <title>Sude Gül Çetinkaya — kurucu ortak, OpOne · DentAI · HotelAI · SocialAI · AgentAI</title>
 <defs>
   <linearGradient id="zemin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{t["zemin"]}"/><stop offset="1" stop-color="{t["zemin2"]}"/></linearGradient>
@@ -100,22 +109,24 @@ def afis(ad):
   <rect width="{W}" height="{H}" fill="url(#perde)"/>
   <g font-family="{mono}" font-size="12" fill="{t["soluk"]}" letter-spacing="2.4">
     <text x="64" y="74">N° 01 · OPONE</text>
-    <text x="{W - 64}" y="74" text-anchor="end" font-size="11">{ETIKET}</text>
+    <text x="{W - 64}" y="74" text-anchor="end" font-size="11">{M["aylar"][AY - 1]} {YIL} {M["baski"]}</text>
     <text x="{W - 64}" y="{H - 38}" text-anchor="end">dent · hotel · social · agent · {YIL}</text>
   </g>
   <line x1="64" y1="92" x2="148" y2="92" stroke="{t["renkler"][0]}" stroke-width="2"/>
   <text x="60" y="194" font-family="{serif}" font-size="63" fill="{t["yazi"]}" textLength="{AD_GENISLIK}" lengthAdjust="spacing">Sude Gül</text>
   <text x="64" y="242" font-family="{mono}" font-size="26" fill="{t["yazi"]}" textLength="{AD_GENISLIK - 4}" lengthAdjust="spacing">ÇETİNKAYA</text>
-  <text x="64" y="304" font-family="{serif}" font-size="21" font-style="italic" fill="{t["soluk"]}">We bring a business’s entire operation under one roof.</text>
+  <text x="64" y="304" font-family="{serif}" font-size="21" font-style="italic" fill="{t["soluk"]}">{M["slogan"]}</text>
   <g font-family="{mono}" font-size="13" fill="{t["soluk"]}">
-    <text x="64" y="346"><tspan fill="{t["renkler"][0]}">›</tspan> co-founder — OpOne · DentAI · HotelAI · SocialAI · AgentAI<tspan class="imlec" fill="{t["renkler"][0]}"> ▍</tspan></text>
+    <text x="64" y="346"><tspan fill="{t["renkler"][0]}">›</tspan> {M["rol"]} — OpOne · DentAI · HotelAI · SocialAI · AgentAI<tspan class="imlec" fill="{t["renkler"][0]}"> ▍</tspan></text>
   </g>
 </g>
 <rect x=".5" y=".5" width="{W - 1}" height="{H - 1}" rx="18" fill="none" stroke="{t["ince"]}"/>
 </svg>
 '''
 
-for ad in TEMA:
-    (KOK / "assets").mkdir(exist_ok=True)
-    (KOK / "assets" / f"afis-{ad}.svg").write_text(afis(ad), encoding="utf-8")
-    print("yazildi:", f"assets/afis-{ad}.svg", "·", ETIKET, "· tohum", TOHUM)
+for dil, M in METINLER.items():
+    klasor = KOK / M["klasor"]
+    klasor.mkdir(parents=True, exist_ok=True)
+    for ad in TEMA:
+        (klasor / f"afis-{ad}.svg").write_text(afis(ad), encoding="utf-8")
+        print("yazildi:", f"{M['klasor']}/afis-{ad}.svg", "·", M["aylar"][AY - 1], YIL, "· tohum", TOHUM)

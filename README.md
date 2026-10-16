@@ -1,3 +1,5 @@
+<p align="right"><b>English</b> · <a href="https://github.com/sudegulcetinkaya-hub/sudegulcetinkaya-hub/blob/main/README.tr.md">Türkçe</a></p>
+
 <p align="center">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/afis-dark.svg">

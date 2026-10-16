@@ -51,7 +51,7 @@ Teammates that take a task, finish it and show the proof. They plan, build and r
 </tr>
 </table>
 
-### My project: Request Point
+### My other project: Request Point
 
 <sub>fashion retail experience · prototype</sub>
 

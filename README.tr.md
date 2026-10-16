@@ -51,7 +51,7 @@ Görevi alan, bitiren ve kanıtını sunan çalışma arkadaşları. Planlar, uy
 </tr>
 </table>
 
-### İstek Noktası projem
+### Diğer projem: İstek Noktası
 
 <sub>moda mağazası deneyimi · prototip</sub>
 

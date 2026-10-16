@@ -1,96 +1,96 @@
-# İstek Noktası vaka kartının üç karesini üretir (açık + koyu): bekleme → tek ekran → görünür durum.
-# Sade çizim; marka, logo ya da mağaza fotoğrafı yok. Çıktı: assets/vaka/kare-{1,2,3}-{light,dark}.svg
+# İstek Noktası vaka kartının üç karesini üretir (açık + koyu): bekleyiş → tek kayıt → görünür durum.
+# Moda mağazası çizgisi: siyah-beyaz, keskin köşe, ince çizgi, büyük serif başlık, aralıklı büyük harf etiket.
+# Marka, logo ya da mağaza fotoğrafı yok. Süre/dakika vaadi yok (kesin karar: yalnız durum).
+# Çıktı: assets/vaka/kare-{1,2,3}-{light,dark}.svg
 import pathlib
 
 KOK = pathlib.Path(__file__).resolve().parent.parent
 W, H = 360, 240
 
 TEMA = {
-    "dark": dict(zemin="#111823", kart="#18212e", cizgi="#2a3442", yazi="#eef1f4", soluk="#8a97a6",
-                 vurgu="#3fd0a2", ikinci="#5b7cfa", uyari="#ff7a8c", ten="#c9d2dc"),
-    "light": dict(zemin="#f6f4ef", kart="#ffffff", cizgi="#ddd8cd", yazi="#14181d", soluk="#5d6773",
-                  vurgu="#1f9e7a", ikinci="#3f5fd8", uyari="#d94a64", ten="#3a4350"),
+    "light": dict(zemin="#ffffff", yazi="#000000", soluk="#6b6b6b", cizgi="#d9d9d9", ters="#ffffff"),
+    "dark": dict(zemin="#000000", yazi="#ffffff", soluk="#9a9a9a", cizgi="#333333", ters="#000000"),
 }
-MONO = "ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace"
-SANS = "-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif"
+SERIF = "Didot, 'Bodoni 72', 'Bodoni MT', 'Playfair Display', Georgia, 'Times New Roman', serif"
+SANS = "'Helvetica Neue', Helvetica, Arial, sans-serif"
 
-def cerceve(t, no, baslik, ic):
+def etiket(t, x, y, metin, renk=None, anchor="start", boyut=8.5):
+    return (f'<text x="{x}" y="{y}" text-anchor="{anchor}" font-family="{SANS}" font-size="{boyut}" '
+            f'letter-spacing="2.2" fill="{renk or t["soluk"]}">{metin}</text>')
+
+def cerceve(t, no, baslik, ic, alt):
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="{no}. {baslik}">
 <title>{no}. {baslik}</title>
 <style>
-  .nabiz {{ animation: nabiz 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }}
-  @keyframes nabiz {{ 50% {{ opacity: .35 }} }}
+  .nabiz {{ animation: nabiz 2.6s ease-in-out infinite; }}
+  @keyframes nabiz {{ 50% {{ opacity: .25 }} }}
   @media (prefers-reduced-motion: reduce) {{ .nabiz {{ animation: none }} }}
 </style>
-<rect x=".5" y=".5" width="{W - 1}" height="{H - 1}" rx="16" fill="{t["zemin"]}" stroke="{t["cizgi"]}"/>
-<text x="22" y="34" font-family="{MONO}" font-size="12" letter-spacing="2" fill="{t["soluk"]}">0{no}</text>
-<text x="52" y="34" font-family="{SANS}" font-size="15" font-weight="600" fill="{t["yazi"]}">{baslik}</text>
+<rect x=".5" y=".5" width="{W - 1}" height="{H - 1}" fill="{t["zemin"]}" stroke="{t["cizgi"]}"/>
+{etiket(t, 22, 30, f"0{no}", t["yazi"])}
+<text x="46" y="31" font-family="{SERIF}" font-size="19" fill="{t["yazi"]}">{baslik}</text>
+<path d="M22 44 H{W - 22}" stroke="{t["yazi"]}" stroke-width=".75"/>
 {ic}
+<path d="M22 {H - 34} H{W - 22}" stroke="{t["cizgi"]}" stroke-width=".75"/>
+{etiket(t, 22, H - 16, alt)}
 </svg>
 '''
 
-def kisi(t, x, y, renk):
-    return (f'<circle cx="{x}" cy="{y}" r="11" fill="{renk}"/>'
-            f'<path d="M{x - 19} {y + 46} Q{x - 19} {y + 16} {x} {y + 16} Q{x + 19} {y + 16} {x + 19} {y + 46} Z" fill="{renk}"/>')
+def askili(t, x, y, s=1.0, dolu=False):
+    # askıda tek elbise silueti, ince çizgi
+    f = t["yazi"] if dolu else "none"
+    return (f'<g transform="translate({x} {y}) scale({s})" fill="none" stroke="{t["yazi"]}" stroke-width="1.1" stroke-linejoin="round">'
+            f'<path d="M0 -30 q0 -6 5 -6 q5 0 5 5"/><path d="M-26 -14 L0 -26 L26 -14"/>'
+            f'<path d="M-9 -22 L-14 4 L-24 44 H24 L14 4 L9 -22" fill="{f}" fill-opacity="{.9 if dolu else 0}"/>'
+            f'<path d="M-14 4 H14"/></g>')
 
 def kare1(t):
-    # müşteri bekliyor; saat dönüyor; danışman depoya gidip geliyor (kesikli yol)
-    ic = kisi(t, 70, 118, t["ten"])
-    ic += (f'<g transform="translate(70 82)"><circle r="17" fill="{t["kart"]}" stroke="{t["uyari"]}" stroke-width="2.5"/>'
-           f'<path d="M0 -9 V0 L7 5" fill="none" stroke="{t["uyari"]}" stroke-width="2.5" stroke-linecap="round"/></g>')
-    ic += f'<path d="M110 160 C160 120 220 200 270 150" fill="none" stroke="{t["soluk"]}" stroke-width="2" stroke-dasharray="5 7"/>'
-    ic += f'<path d="M270 150 C220 210 160 120 110 172" fill="none" stroke="{t["soluk"]}" stroke-width="2" stroke-dasharray="5 7" opacity=".55"/>'
-    ic += (f'<g transform="translate(272 98)"><rect x="0" y="0" width="64" height="58" rx="6" fill="{t["kart"]}" stroke="{t["cizgi"]}"/>'
-           f'<path d="M0 20 H64 M0 39 H64" stroke="{t["cizgi"]}"/>'
-           f'<rect x="8" y="6" width="14" height="10" rx="2" fill="{t["soluk"]}" opacity=".5"/><rect x="28" y="25" width="20" height="10" rx="2" fill="{t["soluk"]}" opacity=".5"/>'
-           f'<text x="32" y="78" text-anchor="middle" font-family="{MONO}" font-size="11" fill="{t["soluk"]}">depo</text></g>')
-    ic += f'<text x="182" y="128" text-anchor="middle" font-family="{SANS}" font-size="28" font-weight="700" fill="{t["uyari"]}" class="nabiz">?</text>'
-    ic += f'<text x="22" y="216" font-family="{SANS}" font-size="13" fill="{t["soluk"]}">Ürün var mı, nerede, ne kadar sürer?</text>'
-    return cerceve(t, 1, "Müşteri bekliyor", ic)
+    ic = askili(t, 76, 120)
+    # müşteri ile depo arasındaki görünmeyen yol: kesikli çizgi, sonunda büyük soru işareti
+    ic += f'<path d="M118 132 H262" stroke="{t["soluk"]}" stroke-width=".9" stroke-dasharray="2 5"/>'
+    ic += (f'<g transform="translate(284 104)" fill="none" stroke="{t["yazi"]}" stroke-width=".9">'
+           f'<rect x="0" y="0" width="48" height="56"/><path d="M0 18.7 H48 M0 37.3 H48"/></g>')
+    ic += etiket(t, 308, 176, "DEPO", anchor="middle")
+    ic += f'<text x="190" y="122" text-anchor="middle" font-family="{SERIF}" font-size="44" fill="{t["yazi"]}" class="nabiz">?</text>'
+    ic += etiket(t, 76, 180, "İSTENEN BEDEN", anchor="middle")
+    return cerceve(t, 1, "Bekleyiş", ic, "BEDEN VAR MI, NEREDE, İSTEĞİM NE OLDU?")
 
 def kare2(t):
-    # tek ekran: ürün, beden, stok ve konum
-    ic = f'<rect x="40" y="52" width="280" height="148" rx="12" fill="{t["kart"]}" stroke="{t["cizgi"]}"/>'
-    ic += (f'<rect x="56" y="68" width="44" height="44" rx="8" fill="{t["zemin"]}" stroke="{t["cizgi"]}"/>'
-           f'<path d="M66 80 L73 74 H83 L90 80 L86 86 L84 84 V104 H72 V84 L70 86 Z" fill="none" stroke="{t["yazi"]}" stroke-width="1.6" stroke-linejoin="round"/>')
-    ic += f'<rect x="112" y="72" width="110" height="9" rx="4.5" fill="{t["yazi"]}" opacity=".8"/><rect x="112" y="89" width="70" height="7" rx="3.5" fill="{t["soluk"]}" opacity=".6"/>'
-    for i, (b, var) in enumerate((("S", False), ("M", True), ("L", True), ("XL", False))):
-        x = 112 + i * 40
-        ic += (f'<rect x="{x}" y="102" width="32" height="20" rx="10" fill="{t["vurgu"] if var else "none"}" fill-opacity="{.18 if var else 0}" stroke="{t["vurgu"] if var else t["cizgi"]}"/>'
-               f'<text x="{x + 16}" y="116" text-anchor="middle" font-family="{MONO}" font-size="10" fill="{t["yazi"] if var else t["soluk"]}">{b}</text>')
-    satirlar = (("Mağaza", "1", t["vurgu"], 0.25), ("Depo", "6", t["ikinci"], 1.0))
-    for i, (ad, adet, renk, oran) in enumerate(satirlar):
-        y = 144 + i * 24
-        ic += (f'<text x="56" y="{y + 4}" font-family="{SANS}" font-size="12" fill="{t["soluk"]}">{ad}</text>'
-               f'<rect x="112" y="{y - 5}" width="120" height="8" rx="4" fill="{t["cizgi"]}"/><rect x="112" y="{y - 5}" width="{120 * oran:.0f}" height="8" rx="4" fill="{renk}"/>'
-               f'<text x="242" y="{y + 4}" font-family="{MONO}" font-size="12" fill="{t["yazi"]}">{adet}</text>')
-    ic += (f'<g transform="translate(272 152)"><path d="M0 -14 C-9 -14 -12 -7 -12 -3 C-12 5 0 16 0 16 C0 16 12 5 12 -3 C12 -7 9 -14 0 -14 Z" fill="{t["ikinci"]}"/>'
-           f'<circle cy="-3" r="4" fill="{t["kart"]}"/><text y="32" text-anchor="middle" font-family="{MONO}" font-size="10" fill="{t["soluk"]}">raf B-3</text></g>')
-    ic += f'<text x="22" y="222" font-family="{SANS}" font-size="13" fill="{t["soluk"]}">Stok ve konum tek ekranda.</text>'
-    return cerceve(t, 2, "Tek ekran", ic)
+    ic = askili(t, 72, 118, 0.95)
+    ic += etiket(t, 128, 70, "ÜRÜN · W-47 İSTEĞİ", t["soluk"])
+    ic += f'<text x="128" y="92" font-family="{SERIF}" font-size="17" fill="{t["yazi"]}">Saten midi elbise</text>'
+    for i, b in enumerate(("XS", "S", "M", "L", "XL")):
+        x, sec = 128 + i * 38, b == "M"
+        ic += (f'<rect x="{x}" y="104" width="32" height="22" fill="{t["yazi"] if sec else "none"}" stroke="{t["yazi"] if sec else t["cizgi"]}" stroke-width=".9"/>'
+               f'<text x="{x + 16}" y="119" text-anchor="middle" font-family="{SANS}" font-size="9.5" letter-spacing="1" '
+               f'fill="{t["ters"] if sec else t["soluk"]}">{b}</text>')
+    for i, (ad, deger) in enumerate((("MAĞAZA", "1"), ("DEPO", "6"), ("KONUM", "RAF B-3"))):
+        y = 152 + i * 18
+        ic += etiket(t, 128, y, ad)
+        ic += (f'<text x="{W - 22}" y="{y}" text-anchor="end" font-family="{SANS}" font-size="10" letter-spacing="1.5" '
+               f'fill="{t["yazi"]}">{deger}</text>')
+        ic += f'<path d="M128 {y + 6} H{W - 22}" stroke="{t["cizgi"]}" stroke-width=".6"/>'
+    return cerceve(t, 2, "Tek kayıt", ic, "STOK, BEDEN VE RAF YERİ AYNI EKRANDA")
 
 def kare3(t):
-    # isteğin durumu: alındı → hazırlanıyor → yolda → teslim
-    adimlar = ("alındı", "hazırlanıyor", "yolda", "teslim")
-    ic, x0, ara, y = "", 52, 85, 110
-    ic += f'<path d="M{x0} {y} H{x0 + 3 * ara}" stroke="{t["cizgi"]}" stroke-width="4" stroke-linecap="round"/>'
-    ic += f'<path d="M{x0} {y} H{x0 + 2 * ara}" stroke="{t["vurgu"]}" stroke-width="4" stroke-linecap="round"/>'
+    ic = etiket(t, 22, 70, "İSTEK KODU")
+    ic += f'<text x="22" y="112" font-family="{SERIF}" font-size="46" fill="{t["yazi"]}">W-47</text>'
+    adimlar = ("ALINDI", "DEPODA ARANIYOR", "SIRADAKİ TURDA", "İSTEK NOKTASINDA")
+    aktif = 2
     for i, ad in enumerate(adimlar):
-        x = x0 + i * ara
-        if i < 2:
-            ic += (f'<circle cx="{x}" cy="{y}" r="12" fill="{t["vurgu"]}"/>'
-                   f'<path d="M{x - 5} {y} L{x - 1} {y + 4} L{x + 6} {y - 4}" fill="none" stroke="{t["kart"]}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>')
-        elif i == 2:
-            ic += (f'<circle cx="{x}" cy="{y}" r="17" fill="{t["vurgu"]}" opacity=".25" class="nabiz"/>'
-                   f'<circle cx="{x}" cy="{y}" r="12" fill="{t["kart"]}" stroke="{t["vurgu"]}" stroke-width="3"/><circle cx="{x}" cy="{y}" r="4" fill="{t["vurgu"]}"/>')
+        y = 66 + i * 24
+        x = 168
+        if i < aktif:
+            ic += f'<rect x="{x}" y="{y - 7}" width="7" height="7" fill="{t["yazi"]}"/>'
+        elif i == aktif:
+            ic += (f'<rect x="{x}" y="{y - 7}" width="7" height="7" fill="{t["yazi"]}" class="nabiz"/>'
+                   f'<rect x="{x - 3}" y="{y - 10}" width="13" height="13" fill="none" stroke="{t["yazi"]}" stroke-width=".8"/>')
         else:
-            ic += f'<circle cx="{x}" cy="{y}" r="12" fill="{t["kart"]}" stroke="{t["cizgi"]}" stroke-width="3"/>'
-        renk = t["yazi"] if i <= 2 else t["soluk"]
-        ic += f'<text x="{x}" y="{y + 34}" text-anchor="middle" font-family="{SANS}" font-size="11.5" fill="{renk}">{ad}</text>'
-    ic += (f'<rect x="70" y="162" width="220" height="32" rx="16" fill="{t["vurgu"]}" fill-opacity=".14" stroke="{t["vurgu"]}"/>'
-           f'<text x="180" y="184" text-anchor="middle" font-family="{SANS}" font-size="12.5" fill="{t["yazi"]}">yaklaşık 3 dk · danışman yolda</text>')
-    ic += f'<text x="22" y="222" font-family="{SANS}" font-size="13" fill="{t["soluk"]}">İsteğin durumu herkese görünür.</text>'
-    return cerceve(t, 3, "Durum görünür", ic)
+            ic += f'<rect x="{x}" y="{y - 7}" width="7" height="7" fill="none" stroke="{t["soluk"]}" stroke-width=".8"/>'
+        renk = t["yazi"] if i <= aktif else t["soluk"]
+        ic += etiket(t, x + 18, y, ad, renk)
+    ic += etiket(t, 22, 186, "SÜRE VAADİ YOK · YALNIZCA GERÇEK DURUM")
+    return cerceve(t, 3, "Görünür durum", ic, "MÜŞTERİ İSTEĞİNİ KENDİSİ İZLER")
 
 (KOK / "assets" / "vaka").mkdir(parents=True, exist_ok=True)
 for ad, t in TEMA.items():

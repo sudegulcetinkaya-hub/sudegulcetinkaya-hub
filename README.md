@@ -51,9 +51,13 @@ Görevi alan, bitiren ve kanıtını sunan çalışma arkadaşları. Planlar, uy
 </tr>
 </table>
 
-### Kendi projem
+### İstek Noktası projem
 
-**İstek Noktası** · <sub>mağaza deneyimi</sub> — Mağazada müşteri ürününü beklerken stoğu, konumu ve isteğinin durumunu tek akışta gösteren bir prototip. Danışmana daha çok zaman, depoya tek kayıt.
+<sub>moda mağazası deneyimi · prototip</sub>
+
+Mağazada en uzun dakikalar, müşterinin istediği bedenin depodan gelmesini beklediği dakikalardır. Ürün var mı, nerede, isteği unutuldu mu: bunların hiçbiri görünmez. İstek Noktası bu bekleyişi görünür kılıyor. Müşteri isteğini bırakır, kısa bir istek kodu alır (**W-47**) ve isteğinin hangi adımda olduğunu kendisi izler: *alındı, depoda aranıyor, sıradaki turda, istek noktasında*. Danışman aynı kaydı tek listede görür. Kimse aynı soruyu iki kez sormaz, kimse depoya aynı ürün için iki kez inmez.
+
+Ekranda saat ya da dakika vaadi yok; yalnızca gerçek durum var. Tutmayan bir "10 dakika" sözü, hiç söz vermemekten daha çok güven kaybettirir.
 
 <table>
 <tr>
@@ -61,25 +65,25 @@ Görevi alan, bitiren ve kanıtını sunan çalışma arkadaşları. Planlar, uy
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/vaka/kare-1-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/vaka/kare-1-light.svg">
-  <img src="assets/vaka/kare-1-light.svg" width="100%" alt="1. Müşteri bekliyor: ürün var mı, nerede, ne kadar sürer belli değil">
+  <img src="assets/vaka/kare-1-light.svg" width="100%" alt="1. Bekleyiş: beden var mı, nerede, isteğim ne oldu belli değil">
 </picture><br>
-<sub><b>1 · Müşteri bekliyor</b></sub>
+<sub><b>1 · Bekleyiş</b></sub>
 </td>
 <td align="center" width="33%" valign="top">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/vaka/kare-2-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/vaka/kare-2-light.svg">
-  <img src="assets/vaka/kare-2-light.svg" width="100%" alt="2. Stok ve konum tek ekranda: beden, mağaza ve depo adedi, raf yeri">
+  <img src="assets/vaka/kare-2-light.svg" width="100%" alt="2. Tek kayıt: beden, mağaza ve depo adedi, raf yeri aynı ekranda">
 </picture><br>
-<sub><b>2 · Stok ve konum tek ekranda</b></sub>
+<sub><b>2 · Tek kayıt</b></sub>
 </td>
 <td align="center" width="33%" valign="top">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/vaka/kare-3-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/vaka/kare-3-light.svg">
-  <img src="assets/vaka/kare-3-light.svg" width="100%" alt="3. İsteğin durumu görünür: alındı, hazırlanıyor, yolda, teslim">
+  <img src="assets/vaka/kare-3-light.svg" width="100%" alt="3. Görünür durum: W-47 isteği alındı, depoda aranıyor, sıradaki turda, istek noktasında">
 </picture><br>
-<sub><b>3 · İsteğin durumu görünür</b></sub>
+<sub><b>3 · Görünür durum</b></sub>
 </td>
 </tr>
 </table>

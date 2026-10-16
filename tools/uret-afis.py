@@ -1,5 +1,5 @@
 # Sude'nin GitHub profil afişini üretir (açık + koyu). Tohum aydan gelir: aynı ayda her koşu aynı
-# çıktıyı verir, her ay yeni bir baskı çıkar (köşede "EKİM 2026 BASKISI" gibi bir etiket).
+# çıktıyı verir, her ay yeni bir baskı çıkar (köşede "OCTOBER 2026 EDITION" gibi bir etiket).
 # Ayı elle seçmek için: AFIS_AY=2026-11 python tools/uret-afis.py
 # Çizgiler: diş minesi / eşyükselti katmanları gibi akan eğriler; yatayda periyodik, böylece
 # sola kayan animasyon dikişsiz döner. Hareket azaltma tercihinde animasyon durur.
@@ -10,8 +10,8 @@ W, H = 1280, 400
 # "Sude Gül" ve "ÇETİNKAYA" aynı sağ kenarda biter: iki satır da bu genişliğe sabitlenir
 # (textLength), böylece görüntüleyicinin yazı tipi farklı olsa da hiza bozulmaz.
 AD_GENISLIK = 243
-AYLAR = ["OCAK", "ŞUBAT", "MART", "NİSAN", "MAYIS", "HAZİRAN",
-         "TEMMUZ", "AĞUSTOS", "EYLÜL", "EKİM", "KASIM", "ARALIK"]
+AYLAR = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+         "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"]
 
 def baski_ayi():
     """(yıl, ay): AFIS_AY varsa ondan, yoksa Türkiye saatiyle (UTC+3) bugünden."""
@@ -26,7 +26,7 @@ def baski_ayi():
 
 YIL, AY = baski_ayi()
 TOHUM = YIL * 100 + AY
-ETIKET = f"{AYLAR[AY - 1]} {YIL} BASKISI"
+ETIKET = f"{AYLAR[AY - 1]} {YIL} EDITION"
 
 TEMA = {
     "dark": dict(zemin="#0b0f14", zemin2="#111823", yazi="#eef1f4", soluk="#8a97a6", ince="#2a3442",
@@ -77,7 +77,7 @@ def afis(ad):
         noktalar.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r.choice([1.2, 1.6, 2.2])}" fill="{r.choice(t["renkler"])}" class="pirilti" style="animation-delay:{r.uniform(0, 6):.1f}s"/>')
     serif = "Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif"
     mono = "ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, 'Liberation Mono', monospace"
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Sude Gül Çetinkaya — kurucu ortak, OpOne · DentAI · HotelAI · SocialAI · AgentAI">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Sude Gül Çetinkaya — co-founder, OpOne · DentAI · HotelAI · SocialAI · AgentAI">
 <title>Sude Gül Çetinkaya — kurucu ortak, OpOne · DentAI · HotelAI · SocialAI · AgentAI</title>
 <defs>
   <linearGradient id="zemin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{t["zemin"]}"/><stop offset="1" stop-color="{t["zemin2"]}"/></linearGradient>
@@ -106,9 +106,9 @@ def afis(ad):
   <line x1="64" y1="92" x2="148" y2="92" stroke="{t["renkler"][0]}" stroke-width="2"/>
   <text x="60" y="194" font-family="{serif}" font-size="63" fill="{t["yazi"]}" textLength="{AD_GENISLIK}" lengthAdjust="spacing">Sude Gül</text>
   <text x="64" y="242" font-family="{mono}" font-size="26" fill="{t["yazi"]}" textLength="{AD_GENISLIK - 4}" lengthAdjust="spacing">ÇETİNKAYA</text>
-  <text x="64" y="304" font-family="{serif}" font-size="21" font-style="italic" fill="{t["soluk"]}">İşletmelerin tüm operasyonunu tek çatı altında topluyoruz.</text>
+  <text x="64" y="304" font-family="{serif}" font-size="21" font-style="italic" fill="{t["soluk"]}">We bring a business’s entire operation under one roof.</text>
   <g font-family="{mono}" font-size="13" fill="{t["soluk"]}">
-    <text x="64" y="346"><tspan fill="{t["renkler"][0]}">›</tspan> kurucu ortak — OpOne · DentAI · HotelAI · SocialAI · AgentAI<tspan class="imlec" fill="{t["renkler"][0]}"> ▍</tspan></text>
+    <text x="64" y="346"><tspan fill="{t["renkler"][0]}">›</tspan> co-founder — OpOne · DentAI · HotelAI · SocialAI · AgentAI<tspan class="imlec" fill="{t["renkler"][0]}"> ▍</tspan></text>
   </g>
 </g>
 <rect x=".5" y=".5" width="{W - 1}" height="{H - 1}" rx="18" fill="none" stroke="{t["ince"]}"/>

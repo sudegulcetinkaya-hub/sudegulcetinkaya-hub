@@ -2,62 +2,60 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/afis-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/afis-light.svg">
-  <img alt="Sude Gül Çetinkaya — kurucu ortak, OpOne · DentAI · HotelAI · SocialAI · AgentAI" src="assets/afis-light.svg" width="100%">
+  <img alt="Sude Gül Çetinkaya — co-founder, OpOne · DentAI · HotelAI · SocialAI · AgentAI" src="assets/afis-light.svg" width="100%">
 </picture>
 </p>
 
-Merhaba, ben Sude.
+Hi, I'm Sude.
 
-**OpOne**'ın kurucu ortağıyım. Otellerin, kliniklerin ve markaların bütün operasyonunu tek platformda toplayan dört ürünü birlikte kuruyoruz: **DentAI**, **HotelAI**, **SocialAI** ve **AgentAI**. Ürünün yönünden ekrandaki en küçük kurala kadar her katmanda çalışıyorum.
+I'm a co-founder of **OpOne**. Together we're building four products that bring the entire operation of hotels, clinics and brands onto one platform: **DentAI**, **HotelAI**, **SocialAI** and **AgentAI**. I work on every layer, from the direction of the product down to the smallest rule on the screen.
 
-<sub>Co-founder at OpOne — DentAI, HotelAI, SocialAI and AgentAI. Building one platform for the entire operation of clinics, hotels and brands.</sub>
-
-<a href="https://sudegulcetinkaya-hub.github.io"><b>Canlı vitrin</b></a> — maskotlar imleci izler, dokununca sevinir.
+<a href="https://sudegulcetinkaya-hub.github.io"><b>Live showcase</b></a> — the mascots follow your cursor and light up when you tap them.
 
 <br>
 
 <table>
 <tr>
 <td align="center" width="50%" valign="top">
-<img src="assets/maskot/hellodentai.svg" width="88" alt="HelloDentAI maskotu"><br>
+<img src="assets/maskot/hellodentai.svg" width="88" alt="HelloDentAI mascot"><br>
 <b>HelloDentAI</b><br>
-<sub>diş klinikleri</sub><br><br>
-Randevudan tahsilata klinik akışı tek yerde. Hastaya kendi dilinde cevap; önce rıza, sonra cevap.<br><br>
+<sub>dental clinics</sub><br><br>
+The whole clinic flow in one place, from booking to payment. Patients get answers in their own language: consent first, then the reply.<br><br>
 <a href="https://hellodentai.com">hellodentai.com</a> · <a href="https://www.instagram.com/hellodentai.io/">Instagram</a>
 </td>
 <td align="center" width="50%" valign="top">
-<img src="assets/maskot/hellohotelai.svg" width="88" alt="HelloHotelAI maskotu"><br>
+<img src="assets/maskot/hellohotelai.svg" width="88" alt="HelloHotelAI mascot"><br>
 <b>HelloHotelAI</b><br>
-<sub>konaklama</sub><br><br>
-Resepsiyondan kat hizmetlerine bütün otel aynı ekranda. Misafir mesajları ve günün işleri tek akışta.<br><br>
+<sub>hospitality</sub><br><br>
+The whole hotel on one screen, from the front desk to housekeeping. Guest messages and the day's work in a single flow.<br><br>
 <a href="https://hellohotelai.com">hellohotelai.com</a> · <a href="https://www.instagram.com/hellohotelai.io/">Instagram</a>
 </td>
 </tr>
 <tr>
 <td align="center" width="50%" valign="top">
-<img src="assets/maskot/hellosocialai.svg" width="88" alt="HelloSocialAI maskotu"><br>
+<img src="assets/maskot/hellosocialai.svg" width="88" alt="HelloSocialAI mascot"><br>
 <b>HelloSocialAI</b><br>
-<sub>içerik ve reklam</sub><br><br>
-Markanın sesi, her gün ve her kanalda. İçerik takvimi, paylaşım ve reklam yönetimi tek ekipte.<br><br>
+<sub>content and ads</sub><br><br>
+Your brand's voice, every day and on every channel. Content calendar, posting and ad management in one team.<br><br>
 <a href="https://www.instagram.com/hellosocialai.io/">Instagram</a>
 </td>
 <td align="center" width="50%" valign="top">
-<img src="assets/maskot/helloagentai.svg" width="88" alt="HelloAgentAI maskotu"><br>
+<img src="assets/maskot/helloagentai.svg" width="88" alt="HelloAgentAI mascot"><br>
 <b>HelloAgentAI</b><br>
-<sub>dijital ekip</sub><br><br>
-Görevi alan, bitiren ve kanıtını sunan çalışma arkadaşları. Planlar, uygular, raporlar.<br><br>
+<sub>digital team</sub><br><br>
+Teammates that take a task, finish it and show the proof. They plan, build and report.<br><br>
 <a href="https://www.instagram.com/helloagentai.io/">Instagram</a>
 </td>
 </tr>
 </table>
 
-### İstek Noktası projem
+### My project: Request Point
 
-<sub>moda mağazası deneyimi · prototip</sub>
+<sub>fashion retail experience · prototype</sub>
 
-Mağazada en uzun dakikalar, müşterinin istediği bedenin depodan gelmesini beklediği dakikalardır. Ürün var mı, nerede, isteği unutuldu mu: bunların hiçbiri görünmez. İstek Noktası bu bekleyişi görünür kılıyor. Müşteri isteğini bırakır, kısa bir istek kodu alır (**W-47**) ve isteğinin hangi adımda olduğunu kendisi izler: *alındı, depoda aranıyor, sıradaki turda, istek noktasında*. Danışman aynı kaydı tek listede görür. Kimse aynı soruyu iki kez sormaz, kimse depoya aynı ürün için iki kez inmez.
+The longest minutes in a store are the ones a customer spends waiting for their size to come up from the stockroom. Is it in stock, where is it, has the request been forgotten? None of it is visible. Request Point makes that wait visible. The customer leaves a request, gets a short request code (**W-47**) and follows each step on their own: *received, searching the stockroom, on the next run, at the request point*. The sales associate sees the same record in a single list. Nobody asks the same question twice, and nobody goes down to the stockroom twice for the same item.
 
-Ekranda saat ya da dakika vaadi yok; yalnızca gerçek durum var. Tutmayan bir "10 dakika" sözü, hiç söz vermemekten daha çok güven kaybettirir.
+There are no time promises on the screen, only the real status. A "10 minutes" that doesn't hold costs more trust than no promise at all.
 
 <table>
 <tr>
@@ -65,38 +63,38 @@ Ekranda saat ya da dakika vaadi yok; yalnızca gerçek durum var. Tutmayan bir "
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/vaka/kare-1-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/vaka/kare-1-light.svg">
-  <img src="assets/vaka/kare-1-light.svg" width="100%" alt="1. Bekleyiş: beden var mı, nerede, isteğim ne oldu belli değil">
+  <img src="assets/vaka/kare-1-light.svg" width="100%" alt="1. The wait: is my size in, where is it, what happened to my request">
 </picture><br>
-<sub><b>1 · Bekleyiş</b></sub>
+<sub><b>1 · The wait</b></sub>
 </td>
 <td align="center" width="33%" valign="top">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/vaka/kare-2-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/vaka/kare-2-light.svg">
-  <img src="assets/vaka/kare-2-light.svg" width="100%" alt="2. Tek kayıt: beden, mağaza ve depo adedi, raf yeri aynı ekranda">
+  <img src="assets/vaka/kare-2-light.svg" width="100%" alt="2. One record: size, store and stockroom count and shelf location on one screen">
 </picture><br>
-<sub><b>2 · Tek kayıt</b></sub>
+<sub><b>2 · One record</b></sub>
 </td>
 <td align="center" width="33%" valign="top">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/vaka/kare-3-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/vaka/kare-3-light.svg">
-  <img src="assets/vaka/kare-3-light.svg" width="100%" alt="3. Görünür durum: W-47 isteği alındı, depoda aranıyor, sıradaki turda, istek noktasında">
+  <img src="assets/vaka/kare-3-light.svg" width="100%" alt="3. Visible status: request W-47 received, searching the stockroom, on the next run, at the request point">
 </picture><br>
-<sub><b>3 · Görünür durum</b></sub>
+<sub><b>3 · Visible status</b></sub>
 </td>
 </tr>
 </table>
 
-<sub><b>Ne öğrendim:</b> Bekleyen müşteriyi en çok rahatlatan şey hız değil, isteğinin nerede olduğunu görebilmesi.</sub>
+<sub><b>What I learned:</b> What reassures a waiting customer most isn't speed. It's being able to see where their request is.</sub>
 
-<a href="https://sudegulcetinkaya-hub.github.io/istek-noktasi-acik/">Canlı prototip</a> · <a href="https://github.com/sudegulcetinkaya-hub/istek-noktasi-acik">Kod</a>
+<a href="https://sudegulcetinkaya-hub.github.io/istek-noktasi-acik/">Live prototype</a> · <a href="https://github.com/sudegulcetinkaya-hub/istek-noktasi-acik">Code</a>
 
-### Şu sıralar
+### Right now
 
-- **Klinik paneli** — takvimden tek tıkla randevu, kişiye göre düzenlenen ekran, gece yarısında bile doğru gün.
-- **Hello maskot ailesi** — imleci izleyen gözler, dokununca sevinen küçük yüzler.
-- **Satış masası** — klinikler için 12 slaytlık sunum ve dört dilli canlı demo.
+- **Clinic panel** — one-click booking from the calendar, a screen that adapts to each person, the right date even at midnight.
+- **The Hello mascot family** — eyes that follow the cursor, little faces that light up when tapped.
+- **Sales desk** — a 12-slide deck for clinics and a live demo in four languages.
 
 <sub><code>HTML</code> · <code>CSS</code> · <code>JavaScript</code> · <code>Node.js</code> · <code>Python</code> · <code>Playwright</code></sub>
 

@@ -50,32 +50,32 @@ def kare1(t):
     ic += f'<path d="M118 132 H262" stroke="{t["soluk"]}" stroke-width=".9" stroke-dasharray="2 5"/>'
     ic += (f'<g transform="translate(284 104)" fill="none" stroke="{t["yazi"]}" stroke-width=".9">'
            f'<rect x="0" y="0" width="48" height="56"/><path d="M0 18.7 H48 M0 37.3 H48"/></g>')
-    ic += etiket(t, 308, 176, "DEPO", anchor="middle")
+    ic += etiket(t, 308, 176, "STOCKROOM", anchor="middle")
     ic += f'<text x="190" y="122" text-anchor="middle" font-family="{SERIF}" font-size="44" fill="{t["yazi"]}" class="nabiz">?</text>'
-    ic += etiket(t, 76, 180, "İSTENEN BEDEN", anchor="middle")
-    return cerceve(t, 1, "Bekleyiş", ic, "BEDEN VAR MI, NEREDE, İSTEĞİM NE OLDU?")
+    ic += etiket(t, 76, 180, "REQUESTED SIZE", anchor="middle")
+    return cerceve(t, 1, "The wait", ic, "IS MY SIZE IN, WHERE IS IT, WHAT HAPPENED?")
 
 def kare2(t):
     ic = askili(t, 72, 118, 0.95)
-    ic += etiket(t, 128, 70, "ÜRÜN · W-47 İSTEĞİ", t["soluk"])
-    ic += f'<text x="128" y="92" font-family="{SERIF}" font-size="17" fill="{t["yazi"]}">Saten midi elbise</text>'
+    ic += etiket(t, 128, 70, "ITEM · REQUEST W-47", t["soluk"])
+    ic += f'<text x="128" y="92" font-family="{SERIF}" font-size="17" fill="{t["yazi"]}">Satin midi dress</text>'
     for i, b in enumerate(("XS", "S", "M", "L", "XL")):
         x, sec = 128 + i * 38, b == "M"
         ic += (f'<rect x="{x}" y="104" width="32" height="22" fill="{t["yazi"] if sec else "none"}" stroke="{t["yazi"] if sec else t["cizgi"]}" stroke-width=".9"/>'
                f'<text x="{x + 16}" y="119" text-anchor="middle" font-family="{SANS}" font-size="9.5" letter-spacing="1" '
                f'fill="{t["ters"] if sec else t["soluk"]}">{b}</text>')
-    for i, (ad, deger) in enumerate((("MAĞAZA", "1"), ("DEPO", "6"), ("KONUM", "RAF B-3"))):
+    for i, (ad, deger) in enumerate((("STORE", "1"), ("STOCKROOM", "6"), ("LOCATION", "SHELF B-3"))):
         y = 152 + i * 18
         ic += etiket(t, 128, y, ad)
         ic += (f'<text x="{W - 22}" y="{y}" text-anchor="end" font-family="{SANS}" font-size="10" letter-spacing="1.5" '
                f'fill="{t["yazi"]}">{deger}</text>')
         ic += f'<path d="M128 {y + 6} H{W - 22}" stroke="{t["cizgi"]}" stroke-width=".6"/>'
-    return cerceve(t, 2, "Tek kayıt", ic, "STOK, BEDEN VE RAF YERİ AYNI EKRANDA")
+    return cerceve(t, 2, "One record", ic, "STOCK, SIZE AND SHELF ON ONE SCREEN")
 
 def kare3(t):
-    ic = etiket(t, 22, 70, "İSTEK KODU")
+    ic = etiket(t, 22, 70, "REQUEST CODE")
     ic += f'<text x="22" y="112" font-family="{SERIF}" font-size="46" fill="{t["yazi"]}">W-47</text>'
-    adimlar = ("ALINDI", "DEPODA ARANIYOR", "SIRADAKİ TURDA", "İSTEK NOKTASINDA")
+    adimlar = ("RECEIVED", "SEARCHING STOCKROOM", "ON THE NEXT RUN", "AT THE REQUEST POINT")
     aktif = 2
     for i, ad in enumerate(adimlar):
         y = 66 + i * 24
@@ -89,8 +89,8 @@ def kare3(t):
             ic += f'<rect x="{x}" y="{y - 7}" width="7" height="7" fill="none" stroke="{t["soluk"]}" stroke-width=".8"/>'
         renk = t["yazi"] if i <= aktif else t["soluk"]
         ic += etiket(t, x + 18, y, ad, renk)
-    ic += etiket(t, 22, 186, "SÜRE VAADİ YOK · YALNIZCA GERÇEK DURUM")
-    return cerceve(t, 3, "Görünür durum", ic, "MÜŞTERİ İSTEĞİNİ KENDİSİ İZLER")
+    ic += etiket(t, 22, 186, "NO TIME PROMISES · ONLY THE REAL STATUS")
+    return cerceve(t, 3, "Visible status", ic, "THE CUSTOMER FOLLOWS THEIR OWN REQUEST")
 
 (KOK / "assets" / "vaka").mkdir(parents=True, exist_ok=True)
 for ad, t in TEMA.items():
